@@ -1,13 +1,16 @@
 package studio.sanguine.codingtest.viewmodels
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import studio.sanguine.codingtest.R
 import studio.sanguine.codingtest.repositories.Repository
 
 class MovieDetailsViewModel(val repository: Repository) : ViewModel() {
@@ -16,7 +19,7 @@ class MovieDetailsViewModel(val repository: Repository) : ViewModel() {
         bitmap = MutableLiveData()
     }
 
-    val getBitmap = fun(bmp: Bitmap){
+    val getBitmap = fun(bmp: Bitmap?){
         bitmap.postValue(bmp)
     }
     val callback = MyCallback(getBitmap)
@@ -30,17 +33,22 @@ class MovieDetailsViewModel(val repository: Repository) : ViewModel() {
 
 }
 
-class MyCallback(val getBitmap : (Bitmap) -> Unit) : Callback<ResponseBody> {
+class MyCallback(val getBitmap : (Bitmap?) -> Unit) : Callback<ResponseBody> {
 
-    lateinit var bitmap: Bitmap
+    var bitmap: Bitmap? = null
 
     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-        bitmap = BitmapFactory.decodeStream(response.body()?.byteStream())
-        getBitmap(bitmap)
+        try {
+            bitmap = BitmapFactory.decodeStream(response.body()?.byteStream())
+            getBitmap(bitmap)
+        }catch(e: Exception){
+            bitmap = null
+            Log.e("decoding error", "empty stream")
+        }
     }
 
     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
+        bitmap = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_launcher_foreground)
     }
 
 }

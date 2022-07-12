@@ -35,6 +35,8 @@ class MovieListAdapter(val data: ArrayList<Movie>, val openDetails: (Movie) -> U
             openDetails(item)
         }
 
+
+
     }
 
     override fun getItemCount(): Int {
