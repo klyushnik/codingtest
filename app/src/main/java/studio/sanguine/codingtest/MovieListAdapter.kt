@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import okhttp3.ResponseBody
+import retrofit2.Call
 import studio.sanguine.codingtest.models.Movie
 
 class MovieListAdapter(val data: ArrayList<Movie>, val openDetails: (Movie) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
@@ -34,8 +37,7 @@ class MovieListAdapter(val data: ArrayList<Movie>, val openDetails: (Movie) -> U
         holder.rootView.setOnClickListener {
             openDetails(item)
         }
-
-
+        Picasso.get().load(item.imagethumburl).into(holder.movieImageView)
 
     }
 
