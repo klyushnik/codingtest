@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CodingTest</string>
+    <string name="release_date">La fecha de release</string>
+    <string name="actor_name">Nombre del actor</string>
+    <string name="title">Peliculas</string>
+    <string name="network_error">El Network no es bueno</string>
+</resources>

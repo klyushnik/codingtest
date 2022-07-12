@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CodingTest</string>
+    <string name="release_date">Release Date</string>
+    <string name="title">List of Movies</string>
+    <string name="actor_name">Actor name:</string>
+    <string name="network_error">Network error</string>
+</resources>
