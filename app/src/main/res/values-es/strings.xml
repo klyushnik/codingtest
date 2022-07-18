@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CodingTest</string>
-    <string name="release_date">La fecha de release</string>
-    <string name="actor_name">Nombre del actor</string>
-    <string name="title">Peliculas</string>
-    <string name="network_error">El Network no es bueno</string>
+    <string name="release_date">Fecha de lanzamiento</string>
+    <string name="actor_name">Nombre del actor:</string>
+    <string name="title">Lista de peliculas</string>
+    <string name="network_error">Error de red</string>
+    <string name="settings">Preferencias</string>
+    <string name="movie_details">Detalles de la pelicula</string>
+    <string name="app_language">Idioma de applicacion</string>
+    <string name="english">Ingles</string>
+    <string name="spanish">Espanol</string>
+    <string name="apply">Aplicar</string>
 </resources>

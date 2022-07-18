@@ -2,8 +2,10 @@ package studio.sanguine.codingtest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import org.w3c.dom.Text
 import studio.sanguine.codingtest.R
 import studio.sanguine.codingtest.models.Movie
@@ -16,9 +18,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val movie = intent.getSerializableExtra("movie")
+        supportActionBar?.title = getString(R.string.movie_details)
 
-        val vm = MovieDetailsViewModel(Repository(App.createRetrofit()))
+        val movie = intent.getSerializableExtra("movie")
 
         val quoteTextView = findViewById<TextView>(R.id.details_quoteTextView)
         val actorNameTextView = findViewById<TextView>(R.id.details_actorNameTextView)
@@ -29,13 +31,8 @@ class MovieDetailsActivity : AppCompatActivity() {
             quoteTextView.setText((it as Movie).content)
             actorNameTextView.setText((it as Movie).actorName)
             url = (it as Movie).imagethumburl ?: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqoqCXj79wy81IYW05vx6FPlsc9RIeBAeTKR37QKwRoFOaoxtBL0P8RR8"
+            Picasso.get().load(url).placeholder(R.drawable.ic_baseline_question_mark_24).into(imageView)
         }
-
-        vm.bitmap.observe(this){
-            imageView.setImageBitmap(it)
-        }
-
-        vm.getImage(url)
     }
 
     override fun onSupportNavigateUp(): Boolean {

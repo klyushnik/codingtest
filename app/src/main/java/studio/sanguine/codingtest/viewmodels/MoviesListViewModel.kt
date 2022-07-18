@@ -5,13 +5,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import studio.sanguine.codingtest.models.Movie
 import studio.sanguine.codingtest.repositories.Repository
+import javax.inject.Inject
 
-class MoviesListViewModel(val repo: Repository) : ViewModel() {
+class MoviesListViewModel @Inject constructor(val repo: Repository) : ViewModel() {
+
     var moviesList : MutableLiveData<List<Movie>>
     init {
         moviesList = MutableLiveData()

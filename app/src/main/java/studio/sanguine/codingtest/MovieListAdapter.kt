@@ -1,11 +1,14 @@
 package studio.sanguine.codingtest
 
+import android.content.res.Resources
+import android.content.res.Resources.getSystem
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import okhttp3.ResponseBody
@@ -33,11 +36,12 @@ class MovieListAdapter(val data: ArrayList<Movie>, val openDetails: (Movie) -> U
         holder.titleTextView.setText(item.title ?: "")
         holder.genreTextView.setText(genresString)
         holder.releaseYearTextView.setText(yearText)
+        holder.releaseDateLabel.setText(holder.itemView.context.getString(R.string.release_date))
 
         holder.rootView.setOnClickListener {
             openDetails(item)
         }
-        Picasso.get().load(item.imagethumburl).into(holder.movieImageView)
+        Picasso.get().load(item.imagethumburl).placeholder(R.drawable.ic_baseline_question_mark_24).into(holder.movieImageView)
 
     }
 
@@ -52,4 +56,5 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view){
     val genreTextView = view.findViewById<TextView>(R.id.item_genreTextView)
     val movieImageView = view.findViewById<ImageView>(R.id.item_movieImageView)
     val releaseYearTextView = view.findViewById<TextView>(R.id.item_releaseDateTextView)
+    val releaseDateLabel = view.findViewById<TextView>(R.id.item_releaseDateLabel)
 }
